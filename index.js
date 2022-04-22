@@ -16,6 +16,11 @@ const promptUser = () => {
       type: 'input'
     },
     {
+      name: 'description',
+      message: 'write a brief description of your project, what purpose does it serve?',
+      type: 'input'
+    },
+    {
       name: 'username',
       message: 'Who is the Author? (use GitHub Username)',
       type: 'input',
@@ -27,7 +32,7 @@ const promptUser = () => {
     },
     {
       name: 'email',
-      message: 'What is the email that can be used to contact you?',
+      message: 'What is the email address that can be used to contact you?',
       type: 'input',
     },
     {
@@ -46,7 +51,7 @@ const promptUser = () => {
       type: 'input',
     },
     {
-     name: 'test',
+     name: 'tests',
      message: 'Does this project have any test conditions? If yes, please list them here',
      type: 'input',
     },
@@ -150,32 +155,32 @@ const generateReadme = (userInput) => {
   const markdown = (userInput) => {
     const markdownData =  
     `
-    # ${userInput.title}
-  ${licenseIMG(userInput.license)}
-    ## Table of Contents
-    - [Description](#description)
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [License](#license)
-    - [Contributing](#contributing)
-    - [Tests](#tests)
-    - [Questions](#questions)
+  # ${userInput.projectName}
+  ${licenseIMG(license)}
+  ## Table of Contents
+  - [Description](#description)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [License](#license)
+  - [Contributing](#contributing)
+  - [Tests](#tests)
+  - [Questions](#questions)
 
-    ## Overall Description 
+  ## Overall Description 
   ${userInput.description}
-    ## Installation Instructions
-  ${userInput.installation}
-    ## Usage Guidelines/License
+  ## Installation Instructions
+  ${userInput.install}
+  ## Usage Guidelines/License
   ${userInput.usage}
-    ${licenseDescription(userInput.license)}
-    ## Contribution Guidelines
-  ${userInput.contributing}
-    ## Tests
+  ${licenseDescription(license)}
+  ## Contribution Guidelines
+  ${userInput.guidelines}
+  ## Application Tests
   ${userInput.tests}
-    ## Additional Information
-  Thank you so much for using my application! 
-  Feel free to reach out to me at ${userInput.email} 
-  or visit my GitHub profile at ${githubURL(userInput.username)}
+  ## Additional Information
+  I hope you enjoy the application, if you have any questions, comments, concerns, feedback, ect, 
+  please open a new issue or feel free to reach out directly at: ${userInput.email} 
+  Dont forget to check out some of my other projects on github: ${githubURL(userInput.username)}
   `;
 
   fs.writeFile('./dist/README.md', markdownData, (err) => {
