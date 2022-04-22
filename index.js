@@ -4,8 +4,6 @@ const fs = require('fs');
 // TODO: Include packages needed for this application
 
 const promptUser = () => {
-  
-    var data = 
     inquirer.prompt([
     {
       name: 'welcome',
@@ -26,6 +24,11 @@ const promptUser = () => {
       name: 'GitHub',
       message: 'What is the GitHub Repository link?',
       type: 'input'
+    },
+    {
+      name: 'email',
+      message: 'What is the email that can be used to contact you?',
+      type: 'input',
     },
     {
       name: 'deploymentURL',
@@ -60,142 +63,143 @@ const promptUser = () => {
       choices: ['MIT', 'Open GPL 3.0', 'Apache', 'CC-BY-SA 4.0', 'CC-BY 4.0', 'Other']
     },
     
-    ]);
-     licenseIMG(data);
-     
+    ])
+    .then(function(answers){
+      var userInput = answers;
+      generateReadme(userInput);
+    })
 
   };
  
  
 
   
-
-
-
-// gets images for the license badge at the top of the readme
-const licenseIMG = async (data) => {
-  const license = data.license;
-  switch (license) {
-    case 'MIT':
-      return '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)';
-    case 'Apache':
-      return '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)';
-    case 'Open GPL 3.0':
-      return '[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)';
-    case 'CC-BY-SA 4.0':
-      return '[![License](https://img.shields.io/static/v1?label=License&message=CC-BY-SA&color=blue.svg)](https://creativecommons.org/licenses/by-sa/4.0/)';
-    case 'CC-BY 4.0':
-      return '[![License](https://img.shields.io/static/v1?label=License&message=CC-BY&color=blue)](https://creativecommons.org/licenses/by-sa/4.0/)'
-    default:
-      return '';
+const generateReadme = (userInput) => {
+  const license = userInput.license[0];
+ // gets images for the license badge at the top of the readme
+  const licenseIMG = (license) => {
+    switch (license) {
+      case 'MIT':
+        return '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)';
+      case 'Apache':
+        return '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)';
+      case 'Open GPL 3.0':
+        return '[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)';
+      case 'CC-BY-SA 4.0':
+        return '[![License](https://img.shields.io/static/v1?label=License&message=CC-BY-SA&color=blue.svg)](https://creativecommons.org/licenses/by-sa/4.0/)';
+      case 'CC-BY 4.0':
+        return '[![License](https://img.shields.io/static/v1?label=License&message=CC-BY&color=blue)](https://creativecommons.org/licenses/by-sa/4.0/)'
+      default:
+        return '';
+    }
   }
-}
 
-//assigns url to license information based on user selection
-const licenseURL = (license) => {
-  switch (license) {
-    case 'MIT':
-      return 'https://opensource.org/licenses/MIT';
-    case 'Apache':
-      return 'https://opensource.org/licenses/Apache-2.0';
-    case 'Open GPL 3.0':
-      return 'https://www.gnu.org/licenses/gpl-3.0';
-    case 'CC-BY-SA 4.0':
-      return 'https://creativecommons.org/licenses/by-sa/4.0/';
-    case 'CC-BY 4.0':
-      return 'https://creativecommons.org/licenses/by-sa/4.0/';
-    default:
-      return '';
+  //assigns url to license information based on user selection
+  const licenseURL = (license) => {
+    switch (license) {
+      case 'MIT':
+        return 'https://opensource.org/licenses/MIT';
+      case 'Apache':
+        return 'https://opensource.org/licenses/Apache-2.0';
+      case 'Open GPL 3.0':
+        return 'https://www.gnu.org/licenses/gpl-3.0';
+      case 'CC-BY-SA 4.0':
+        return 'https://creativecommons.org/licenses/by-sa/4.0/';
+      case 'CC-BY 4.0':
+        return 'https://creativecommons.org/licenses/by-sa/4.0/';
+      default:
+        return '';
+    }
   }
-}
 
-//creates a basic license description with hyperlink to the full license
-const licenseDescription = (license) => {
-  const licenseDescription = `## License`
-  switch (license) {
-    case 'MIT':
-      return `${licenseDescription}
-      This project is licensed under the MIT license.
-      For more information about this license and what it entails visit: ${licenseURL(license)}`;
-    case 'Apache':
-      return `${licenseDescription}
-      This project is licensed under the Apache license.
-      For more information about this license and what it entails visit: ${licenseURL(license)}`;
-    case 'Open GPL 3.0':
-      return `${licenseDescription}
-      This project is licensed under the Open GPL 3.0 license.
-      For more information about this license and what it entails visit: ${licenseURL(license)}`;
-    case 'CC-BY-SA 4.0':
-      return `${licenseDescription}
-      This project is licensed under the Creative Commons - Attribution - Share Alike license.
-      For more information about this license and what it entails visit: ${licenseURL(license)}`;
-    case 'CC-BY 4.0':
-      return `${licenseDescription}
-      This project is licensed under the Creative Commons Attribution license.
-      For more information about this license and what it entails visit: ${licenseURL(license)}`;
-    default:
-      return '';
+  //creates a basic license description with hyperlink to the full license
+  const licenseDescription = (license) => {
+    const licenseDescription = `## License`
+    switch (license) {
+      case 'MIT':
+        return `${licenseDescription}
+        This project is licensed under the MIT license.
+        For more information about this license and what it entails visit: ${licenseURL(license)}`;
+      case 'Apache':
+        return `${licenseDescription}
+        This project is licensed under the Apache license.
+        For more information about this license and what it entails visit: ${licenseURL(license)}`;
+      case 'Open GPL 3.0':
+        return `${licenseDescription}
+        This project is licensed under the Open GPL 3.0 license.
+        For more information about this license and what it entails visit: ${licenseURL(license)}`;
+      case 'CC-BY-SA 4.0':
+        return `${licenseDescription}
+        This project is licensed under the Creative Commons - Attribution - Share Alike license.
+        For more information about this license and what it entails visit: ${licenseURL(license)}`;
+      case 'CC-BY 4.0':
+        return `${licenseDescription}
+        This project is licensed under the Creative Commons Attribution license.
+        For more information about this license and what it entails visit: ${licenseURL(license)}`;
+      default:
+        return '';
+    };
   };
-};
 
-// function to generate link to the user's GitHub profile
-const githubURL = (data) => {
-  let username = data.username;
-  // returns the markdown link to the user's GitHub profile
-  return `[${username}](https://github.com/${username})`;
+  const githubURL = (userInput) => {
+    let username = userInput.username;
+    return `[${username}](https://github.com/${username})`;
+  }
+
+
+  const markdown = (userInput) => {
+    const markdownData =  
+    `
+    # ${userInput.title}
+  ${licenseIMG(userInput.license)}
+    ## Table of Contents
+    - [Description](#description)
+    - [Installation](#installation)
+    - [Usage](#usage)
+    - [License](#license)
+    - [Contributing](#contributing)
+    - [Tests](#tests)
+    - [Questions](#questions)
+
+    ## Overall Description 
+  ${userInput.description}
+    ## Installation Instructions
+  ${userInput.installation}
+    ## Usage Guidelines/License
+  ${userInput.usage}
+    ${licenseDescription(userInput.license)}
+    ## Contribution Guidelines
+  ${userInput.contributing}
+    ## Tests
+  ${userInput.tests}
+    ## Additional Information
+  Thank you so much for using my application! 
+  Feel free to reach out to me at ${userInput.email} 
+  or visit my GitHub profile at ${githubURL(userInput.username)}
+  `;
+
+  fs.writeFile('./dist/README.md', markdownData, (err) => {
+    if(err){
+      console.log(err);
+    } else {
+      console.log('file written successfully');
+    }
+  });
+
+  } 
+  markdown(userInput)
 }
 
-// TODO: Create a function to generate markdown for README
-//  function to generate the markdown for the README
-//  ${data.title} and others are the values that are passed in from the user in the promptUser function
-/*  $licenseIMG(data.license) and $licenseDescription(data.license) are the 
-values that are passed in from the licenseIMG and licenseDescription functions */
 
-const markdown = (data) => {
-  console.log(data);
-  const markdownData =  `
-  # ${data.title}
-${licenseIMG(data.license)}
-  ## Table of Contents
-  - [Description](#description)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [License](#license)
-  - [Contributing](#contributing)
-  - [Tests](#tests)
-  - [Questions](#questions)
-  
-  ## Overall Description 
-${data.description}
-  ## Installation Instructions
-${data.installation}
-  ## Usage Guidelines/License
-${data.usage}
-  ${licenseDescription(data.license)}
-  ## Contribution Guidelines
-${data.contributing}
-  ## Tests
-${data.tests}
-  ## Additional Information
-Thank you so much for using my application! 
-Feel free to reach out to me at ${data.email} 
-or visit my GitHub profile at ${githubURL(data.username)}
-`;
-return markdownData;
-}
 
 
 
 // TODO: Create a function to write README file
- const writeToFile = (fileName, data) => {
-    fs.writeFile('./dist/README.md', markdownData);
- }
+
 
 // TODO: Create a function to initialize app
-const init = () => {
+init = () => {
   promptUser();
-  // licenseIMG(data);
-  // licenseURL(license);
 }
 // Function call to initialize app
 init();
