@@ -5,7 +5,6 @@ const fs = require('fs');
 
 const promptUser = () => {
   
-    var data = 
     inquirer.prompt([
     {
       name: 'welcome',
@@ -187,7 +186,7 @@ ${licenseDescription(data.license)}
 
 ## Contribution Guidelines
 
-${data.contribution}
+${data.guidelines}
 
 ## Tests
 
@@ -206,7 +205,14 @@ writeToFile(markdownData);
  const writeToFile = (markdownData) => {
   console.log('made it to write file')
   console.log(markdownData)
-    fs.writeFile('./dist/README.md', markdownData);
+  let data = markdownData
+    fs.writeFile('./dist/README.md', data, (err) => {
+      if (err)
+      console.log(err);
+    else {
+      console.log("File written successfully");
+    }
+    } );
  }
 
 const init = () => {
