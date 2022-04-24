@@ -158,7 +158,7 @@ const markdown = (data) => {
   console.log(data);
   const markdownData =  `
 # ${data.title}
-${licenseIMG(data.license)}
+${licenseIMG(data.license[0])}
 
 ## Table of Contents
 
