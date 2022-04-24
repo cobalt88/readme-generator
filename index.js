@@ -164,13 +164,14 @@ ${licenseIMG(license)}
 
  ## Table of Contents
 
- - [Description](#description)
-- [Installation](#installation)
-- [Instructions/How To Use](#instructions)
-- [License](#license)
-- [Contribution](#contribution)
-- [Tests](#tests)
-- [Contact Information](#contact)
+ - [Description](#overall-description)
+ - [Installation](#installation-instructions)
+ - [Instructions/How To Use](#instructions/how-to-use)
+ - [License](#license)
+ - [Contribution](#contribution-guidelines)
+ - [Tests](#application-tests)
+ - [Contact Information](#contact-information)
+ 
 
  ## Overall Description 
 
