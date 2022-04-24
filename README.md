@@ -29,6 +29,9 @@
  The application will go through a series of prompts inside of your terminal asking you to provide information for the various sections. 
  If theres a section you don't need just leave it blank and you can edit it out later. 
 
+ ![caption](./dist/readme_video.mov)
+
+
  ## Contribution Guidelines
  - - -
  If you would like to contribute to the project, feel free to do so. Some things to keep in mind:

@@ -1,38 +1,37 @@
 
-# This Is A Test
+# undefined
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
  ## Table of Contents
 
- - [Description](#description)
-- [Installation](#installation)
-- [Instructions/How To Use](#instructions)
-- [License](#license)
-- [Contribution](#contribution)
-- [Tests](#tests)
-- [Contact Information](#contact)
+ - [Description](#overall-description)
+ - [Installation](#installation-instructions)
+ - [Instructions/How To Use](#instructions/how-to-use)
+ - [License](#license)
+ - [Contribution](#contribution-guidelines)
+ - [Tests](#application-tests)
+ - [Contact Information](#contact-information)
+ 
 
  ## Overall Description 
 
- lorem ipsum .... blah blah blah
+ brief description of purpose/scope
 
  ## Installation Instructions
 
- This is how to install the app:
+ if applicable
 
  ## Instructions/How To Use
 
- instructions and how to use stuff goes here
+ more detailed description can go here
 
  ## Contribution Guidelines
 
- If you would like to contribute ...
+ not everyone has these but their a nice touch
 
  ## Application Tests
 
- The following test conditions are active:
-
- ## License
+ this project does not, but yours should. 
 
 ## License
         This project is licensed under the MIT license.
@@ -41,5 +40,5 @@
  ## Contact Information
 
  I hope you enjoy the application, if you have any questions, comments, concerns, feedback, ect, 
-please open a new issue or feel free to reach out directly at: test@test.com 
-Dont forget to check out some of my other projects on github: [undefined](https://github.com/undefined)
+please open a new issue or feel free to reach out directly at: good email address someone can send you messages about the project to 
+Dont forget to check out some of my other projects on github: [github username (cobalt88 for example)](https://github.com/github username (cobalt88 for example))
