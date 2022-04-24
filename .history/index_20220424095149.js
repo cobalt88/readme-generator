@@ -13,13 +13,8 @@ const promptUser = () => {
       type: 'confirm',
     },
     {
-      name: 'title',
+      name: 'projectName',
       message: 'What is your projects name?',
-      type: 'input'
-    },
-    {
-      name: 'description',
-      message: 'Provide a description of your project',
       type: 'input'
     },
     {
@@ -30,11 +25,6 @@ const promptUser = () => {
     {
       name: 'GitHub',
       message: 'What is the GitHub Repository link?',
-      type: 'input'
-    },
-    {
-      name: 'email',
-      message: 'what is an email that you can be reached at?',
       type: 'input'
     },
     {
@@ -53,7 +43,7 @@ const promptUser = () => {
       type: 'input',
     },
     {
-     name: 'tests',
+     name: 'test',
      message: 'Does this project have any test conditions? If yes, please list them here',
      type: 'input',
     },
@@ -71,10 +61,11 @@ const promptUser = () => {
     },
     
     ])
-    .then(function(data){
-      markdown(data);
-    })
-    
+    return(data)
+    .then(
+      licenseIMG(data)
+    ).then(markdown(data))
+     
      
 
   };
@@ -86,7 +77,8 @@ const promptUser = () => {
 
 
 // gets images for the license badge at the top of the readme
-const licenseIMG = (license) => {
+const licenseIMG = async (data) => {
+  const license = data.license;
   switch (license) {
     case 'MIT':
       return '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)';
@@ -123,7 +115,7 @@ const licenseURL = (license) => {
 
 //creates a basic license description with hyperlink to the full license
 const licenseDescription = (license) => {
-  const licenseDescription = `## ${license}`
+  const licenseDescription = `## License`
   switch (license) {
     case 'MIT':
       return `${licenseDescription}
@@ -150,19 +142,26 @@ const licenseDescription = (license) => {
   };
 };
 
-const githubURL = (username) => {
-  
+// function to generate link to the user's GitHub profile
+const githubURL = (data) => {
+  let username = data.username;
+  // returns the markdown link to the user's GitHub profile
   return `[${username}](https://github.com/${username})`;
 }
+
+// TODO: Create a function to generate markdown for README
+//  function to generate the markdown for the README
+//  ${data.title} and others are the values that are passed in from the user in the promptUser function
+/*  $licenseIMG(data.license) and $licenseDescription(data.license) are the 
+values that are passed in from the licenseIMG and licenseDescription functions */
 
 const markdown = (data) => {
   console.log(data);
   const markdownData =  `
 # ${data.title}
-${licenseIMG(data.license)}
+  ${licenseIMG(data.license)}
 
 ## Table of Contents
-
   - [Description](#description)
   - [Installation](#installation)
   - [Usage](#usage)
@@ -173,44 +172,45 @@ ${licenseIMG(data.license)}
   
 ## Overall Description 
 
-${data.description}
+  ${data.description}
 
 ## Installation Instructions
 
-${data.install}
+  ${data.installation}
 
 ## Usage Guidelines/License
 
-${data.license}
-
-${licenseDescription(data.license)}
+  ${data.usage}
+  ${licenseDescription(data.license)}
 
 ## Contribution Guidelines
 
-${data.contribution}
+  ${data.contributing}
 
 ## Tests
 
-${data.tests}
+  ${data.tests}
 
 ## Additional Information
 
-Feel free to reach out to me at ${data.email} 
-or visit my GitHub profile at ${githubURL(data.username)}
+If you have any comments, suggestions, concerns, feel free to either open an issue or reach out to me directly at ${data.email}
+Be sure to also check out my other projects and visit my GitHub profile at ${githubURL(data.username)}
 `;
-writeToFile(markdownData);
+return markdownData.then(fs.writeFile('./dist/README.md', markdownData));
 }
 
 
 
- const writeToFile = (markdownData) => {
-  console.log('made it to write file')
-  console.log(markdownData)
-    fs.writeFile('./dist/README.md', markdownData);
+// TODO: Create a function to write README file
+ const writeToFile = (fileName, data) => {
+    fs.writeFile(fileName, data);
  }
 
+// TODO: Create a function to initialize app
 const init = () => {
   promptUser();
+  // licenseIMG(data);
+  // licenseURL(license);
 }
-
+// Function call to initialize app
 init();

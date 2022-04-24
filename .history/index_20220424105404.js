@@ -53,7 +53,7 @@ const promptUser = () => {
       type: 'input',
     },
     {
-     name: 'tests',
+     name: 'test',
      message: 'Does this project have any test conditions? If yes, please list them here',
      type: 'input',
     },
@@ -150,8 +150,8 @@ const licenseDescription = (license) => {
   };
 };
 
-const githubURL = (username) => {
-  
+const githubURL = (data) => {
+  let username = data.username;
   return `[${username}](https://github.com/${username})`;
 }
 
@@ -177,17 +177,17 @@ ${data.description}
 
 ## Installation Instructions
 
-${data.install}
+${data.installation}
 
 ## Usage Guidelines/License
 
-${data.license}
+${data.usage}
 
 ${licenseDescription(data.license)}
 
 ## Contribution Guidelines
 
-${data.contribution}
+${data.contributing}
 
 ## Tests
 

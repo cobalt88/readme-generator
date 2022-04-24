@@ -150,8 +150,8 @@ const licenseDescription = (license) => {
   };
 };
 
-const githubURL = (username) => {
-  
+const githubURL = (data) => {
+  let username = data.username;
   return `[${username}](https://github.com/${username})`;
 }
 
