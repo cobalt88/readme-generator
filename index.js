@@ -11,7 +11,7 @@ const promptUser = () => {
       type: 'confirm',
     },
     {
-      name: 'projectName',
+      name: 'title',
       message: 'What is your projects name?',
       type: 'input'
     },
@@ -214,15 +214,8 @@ Dont forget to check out some of my other projects on github: ${githubURL(userIn
 }
 
 
-
-
-
-// TODO: Create a function to write README file
-
-
-// TODO: Create a function to initialize app
 init = () => {
   promptUser();
 }
-// Function call to initialize app
+
 init();

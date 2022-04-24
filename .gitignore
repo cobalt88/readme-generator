@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 node_modules
 .history
 .DS_Store
+=======
+.history
+.DS_Store
+node_modules
+>>>>>>> 7faace791e2d9b98107e207a3424386cfd77e17a
