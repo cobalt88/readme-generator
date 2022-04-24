@@ -21,6 +21,10 @@ const promptUser = () => {
       type: 'input'
     },
     {
+      name: 'howToUse',
+      message: 'How does your app work, what does it do, what are the instructions for use?'
+    },
+    {
       name: 'username',
       message: 'Who is the Author? (use GitHub Username)',
       type: 'input',
@@ -152,36 +156,50 @@ const generateReadme = (userInput) => {
   }
 
 
-  const markdown = (userInput) => {
-    const markdownData =  
-    `
-  # ${userInput.projectName}
-  ${licenseIMG(license)}
-  ## Table of Contents
-  - [Description](#description)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [License](#license)
-  - [Contributing](#contributing)
-  - [Tests](#tests)
-  - [Questions](#questions)
+const markdown = (userInput) => {
+  const markdownData =  
+  `
+# ${userInput.projectName}
+${licenseIMG(license)}
 
-  ## Overall Description 
-  ${userInput.description}
-  ## Installation Instructions
-  ${userInput.install}
-  ## Usage Guidelines/License
-  ${userInput.usage}
-  ${licenseDescription(license)}
-  ## Contribution Guidelines
-  ${userInput.guidelines}
-  ## Application Tests
-  ${userInput.tests}
-  ## Additional Information
-  I hope you enjoy the application, if you have any questions, comments, concerns, feedback, ect, 
-  please open a new issue or feel free to reach out directly at: ${userInput.email} 
-  Dont forget to check out some of my other projects on github: ${githubURL(userInput.username)}
-  `;
+ ## Table of Contents
+
+ - [Description](#description)
+- [Installation](#installation)
+- [Instructions/How To Use](#instructions)
+- [License](#license)
+- [Contribution](#contribution)
+- [Tests](#tests)
+- [Contact Information](#contact)
+
+ ## Overall Description 
+
+ ${userInput.description}
+
+ ## Installation Instructions
+
+ ${userInput.install}
+
+ ## Instructions/How To Use
+
+ ${userInput.howToUse}
+
+ ## Contribution Guidelines
+
+ ${userInput.guidelines}
+
+ ## Application Tests
+
+ ${userInput.tests}
+
+${licenseDescription(license)}
+
+ ## Contact Information
+
+ I hope you enjoy the application, if you have any questions, comments, concerns, feedback, ect, 
+please open a new issue or feel free to reach out directly at: ${userInput.email} 
+Dont forget to check out some of my other projects on github: ${githubURL(userInput)}
+`;
 
   fs.writeFile('./dist/README.md', markdownData, (err) => {
     if(err){
